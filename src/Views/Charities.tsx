@@ -43,9 +43,10 @@ function Charities() {
   const getCharities = async () => {
     try {
       const response = await fetch(
-        `https://partners.every.org/v0.2/browse/water?${
-          import.meta.env.API_KEY
-        }`
+        // `https://partners.every.org/v0.2/browse/water?apiKey=${
+        //   import.meta.env.API_KEY
+        // }`
+        "https://partners.every.org/v0.2/browse/water?apiKey=pk_live_c02057a477bb2b1db7ab96376d48bd53"
       );
       if (response.ok) {
         const data = (await response.json()) as APIResponse;
