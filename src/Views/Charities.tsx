@@ -1,30 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "antd";
 import CharityCard from "../Components/CharityCard";
+import { APIResponse, Nonprofit } from "../@Types/Customtypes";
 
-interface APIResponse {
-  nonprofits: Nonprofit[];
-  pagination: Pagination;
-}
-
-type Nonprofit = {
-  description: string;
-  ein: string;
-  name: string;
-  profileUrl: string;
-  logoUrl: string;
-  coverImageUrl: string;
-  logoCloudinaryId: string;
-  location: string;
-  websiteUrl?: string;
-};
-
-type Pagination = {
-  page: number;
-  pages: number;
-  page_size: number;
-  total_results: number;
-};
 function Charities() {
   const [charities, setCharities] = useState<Nonprofit[]>([
     {
@@ -68,24 +46,7 @@ function Charities() {
       <div className="wrapper">
         <h2>Charities</h2>
         <div className="container">
-          <Row>
-            <div className="card">
-              {charities &&
-                charities.map((charity) => {
-                  return (
-                    <Col>
-                      <div key={charity.ein}>
-                        <CharityCard
-                          cover={charity.coverImageUrl}
-                          avatar={charity.logoUrl}
-                          title={charity.name}
-                        />
-                      </div>
-                    </Col>
-                  );
-                })}
-            </div>
-          </Row>
+          <Row></Row>
         </div>
       </div>
     </>

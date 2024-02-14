@@ -5,6 +5,7 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
+import { Button, Col, Row } from "antd";
 
 const { Meta } = Card;
 
