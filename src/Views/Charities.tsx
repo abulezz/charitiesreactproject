@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
+import { Button, Col, Row } from "antd";
 import CharityCard from "../Components/CharityCard";
 
 interface APIResponse {
@@ -65,21 +65,27 @@ function Charities() {
 
   return (
     <>
-      <div className="Wrapper">
+      <div className="wrapper">
         <h2>Charities</h2>
-        <div className="Container">
-          {charities &&
-            charities.map((charity) => {
-              return (
-                <div key={charity.ein}>
-                  <CharityCard
-                    cover={charity.coverImageUrl}
-                    avatar={charity.logoUrl}
-                    title={charity.name}
-                  />
-                </div>
-              );
-            })}
+        <div className="container">
+          <Row>
+            <div className="card">
+              {charities &&
+                charities.map((charity) => {
+                  return (
+                    <Col>
+                      <div key={charity.ein}>
+                        <CharityCard
+                          cover={charity.coverImageUrl}
+                          avatar={charity.logoUrl}
+                          title={charity.name}
+                        />
+                      </div>
+                    </Col>
+                  );
+                })}
+            </div>
+          </Row>
         </div>
       </div>
     </>
