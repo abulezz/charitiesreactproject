@@ -41,7 +41,7 @@ function Charities() {
   useEffect(() => {
     getCharities();
   }, []);
-  if (!CharitiesGrid) return null;
+
   return (
     <>
       <div className="wrapper">

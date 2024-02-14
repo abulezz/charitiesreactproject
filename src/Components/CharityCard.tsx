@@ -2,6 +2,8 @@ import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
+  ShareAltOutlined,
+  HeartOutlined,
 } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
 
@@ -21,8 +23,8 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
         style={{ width: 300 }}
         cover={<img alt={title} src={cover} />}
         actions={[
-          <SettingOutlined key="setting" />,
-          <EditOutlined key="edit" />,
+          <ShareAltOutlined key="share" />,
+          <HeartOutlined key="favourite" />,
           <EllipsisOutlined key="ellipsis" />,
         ]}
       >

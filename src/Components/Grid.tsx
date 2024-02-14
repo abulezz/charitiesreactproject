@@ -14,7 +14,7 @@ const CharitiesGrid = ({ charities }: GridProps) => {
         charities.map((charity) => {
           return (
             <>
-              <Col>
+              <Col span={24}>
                 <div key={charity.ein}>
                   <CharityCard
                     cover={charity.coverImageUrl}
