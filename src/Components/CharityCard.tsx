@@ -5,7 +5,9 @@ import {
   ShareAltOutlined,
   HeartOutlined,
 } from "@ant-design/icons";
-import { Avatar, Card } from "antd";
+import { Avatar, Card, Button, Modal } from "antd";
+import { useState } from "react";
+import CardModal from "./CardModal";
 
 const { Meta } = Card;
 
@@ -17,25 +19,43 @@ type CharityCardProps = {
 };
 
 function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
-  return (
-    <div>
-      <Card
-        style={{ width: 300 }}
-        cover={<img alt={title} src={cover} />}
-        actions={[
-          <ShareAltOutlined key="share" />,
-          <HeartOutlined key="favourite" />,
-          <EllipsisOutlined key="ellipsis" />,
-        ]}
-      >
-        <Meta
-          avatar={<Avatar src={avatar} />}
-          title={title}
-          description={descreption}
-        />
-      </Card>
-    </div>
-  );
-}
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+
+    return (
+      <div>
+        <Card
+          style={{ width: 300 }}
+          cover={<img alt={title} src={cover} />}
+          actions={[
+            <ShareAltOutlined key="share" />,
+            <HeartOutlined key="favourite" />,
+            <EllipsisOutlined key="ellipsis" onClick={showModal} />,
+          ]}
+        >
+          <Meta
+            avatar={<Avatar src={avatar} />}
+            title={title}
+            description={descreption}
+          />
+          <CardModal
+            handleCancel={handleCancel}
+            handleOk={handleOk}
+            isModalOpen={isModalOpen}
+          />
+        </Card>
+      </div>
+    );
+  };
+}
 export default CharityCard;
