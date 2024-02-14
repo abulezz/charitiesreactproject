@@ -1,13 +1,13 @@
 import React from "react";
 import { Nonprofit } from "../@Types/Customtypes";
 import CharityCard from "./CharityCard";
-import { Col } from "antd";
+import { Card, Col } from "antd";
 
 type GridProps = {
-  charities: Nonprofit[];
+  charities: Nonprofit[] | null;
 };
 
-const Grid = ({ charities }: GridProps) => {
+const CharitiesGrid = ({ charities }: GridProps) => {
   return (
     <div className="card">
       {charities &&
@@ -30,4 +30,4 @@ const Grid = ({ charities }: GridProps) => {
   );
 };
 
-export default Grid;
+export default CharitiesGrid;

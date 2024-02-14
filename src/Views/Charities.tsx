@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Grid, Row } from "antd";
 import CharityCard from "../Components/CharityCard";
 import { APIResponse, Nonprofit } from "../@Types/Customtypes";
+import CharitiesGrid from "../Components/Grid";
 
 function Charities() {
   const [charities, setCharities] = useState<Nonprofit[]>([
@@ -40,13 +41,15 @@ function Charities() {
   useEffect(() => {
     getCharities();
   }, []);
-
+  if (!CharitiesGrid) return null;
   return (
     <>
       <div className="wrapper">
         <h2>Charities</h2>
         <div className="container">
-          <Row></Row>
+          <Row>
+            <CharitiesGrid charities={charities} />
+          </Row>
         </div>
       </div>
     </>
