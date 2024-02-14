@@ -1,7 +1,5 @@
 import {
-  EditOutlined,
   EllipsisOutlined,
-  SettingOutlined,
   ShareAltOutlined,
   HeartOutlined,
 } from "@ant-design/icons";
@@ -16,6 +14,8 @@ type CharityCardProps = {
   avatar: string;
   title: string;
   descreption: string;
+  logoURL: string;
+  location: string;
 };
 
 function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
@@ -31,31 +31,32 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-
-    return (
-      <div>
-        <Card
-          style={{ width: 300 }}
-          cover={<img alt={title} src={cover} />}
-          actions={[
-            <ShareAltOutlined key="share" />,
-            <HeartOutlined key="favourite" />,
-            <EllipsisOutlined key="ellipsis" onClick={showModal} />,
-          ]}
-        >
-          <Meta
-            avatar={<Avatar src={avatar} />}
-            title={title}
-            description={descreption}
-          />
-          <CardModal
-            handleCancel={handleCancel}
-            handleOk={handleOk}
-            isModalOpen={isModalOpen}
-          />
-        </Card>
-      </div>
-    );
   };
+  return (
+    <div>
+      <Card
+        style={{ width: 300 }}
+        cover={<img alt={title} src={cover} />}
+        actions={[
+          <HeartOutlined key="favourite" />,
+          <EllipsisOutlined key="ellipsis" onClick={showModal} />,
+        ]}
+      >
+        <Meta
+          avatar={<Avatar src={avatar} />}
+          title={title}
+          // description={descreption}
+        />
+        <CardModal
+          handleCancel={handleCancel}
+          handleOk={handleOk}
+          isModalOpen={isModalOpen}
+          name={title}
+          description={descreption}
+        />
+      </Card>
+    </div>
+  );
 }
+
 export default CharityCard;

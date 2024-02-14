@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Grid, Row } from "antd";
 import CharityCard from "../Components/CharityCard";
 import { APIResponse, Nonprofit } from "../@Types/Customtypes";
-import CharitiesGrid from "../Components/Grid";
+import CharitiesGrid from "../Components/CharitiesGrid";
 
 function Charities() {
   const [charities, setCharities] = useState<Nonprofit[]>([
@@ -18,8 +18,10 @@ function Charities() {
       websiteUrl: "",
     },
   ]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getCharities = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         // `https://partners.every.org/v0.2/browse/water?apiKey=${
@@ -31,6 +33,7 @@ function Charities() {
         const data = (await response.json()) as APIResponse;
         console.log("result :>>", data);
         setCharities(data.nonprofits);
+        setIsLoading(false);
       }
       //Handle errors here//
     } catch (error) {
@@ -47,9 +50,7 @@ function Charities() {
       <div className="wrapper">
         <h2>Charities</h2>
         <div className="container">
-          <Row>
-            <CharitiesGrid charities={charities} />
-          </Row>
+          <Row>{!isLoading && <CharitiesGrid charities={charities} />}</Row>
         </div>
       </div>
     </>

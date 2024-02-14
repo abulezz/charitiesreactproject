@@ -2,6 +2,7 @@ import React from "react";
 import { Nonprofit } from "../@Types/Customtypes";
 import CharityCard from "./CharityCard";
 import { Card, Col } from "antd";
+import Title from "antd/es/skeleton/Title";
 
 type GridProps = {
   charities: Nonprofit[] | null;
@@ -9,20 +10,21 @@ type GridProps = {
 
 const CharitiesGrid = ({ charities }: GridProps) => {
   return (
-    <div className="card">
+    <div key="1" className="card">
       {charities &&
-        charities.map((charity) => {
+        charities.map((charity, i) => {
           return (
             <>
-              <Col span={24}>
-                <div key={charity.ein}>
+              <div key={i}>
+                <Col key={charity.ein} span={24}>
                   <CharityCard
                     cover={charity.coverImageUrl}
                     avatar={charity.logoUrl}
                     title={charity.name}
+                    descreption={charity.description}
                   />
-                </div>
-              </Col>
+                </Col>
+              </div>
             </>
           );
         })}
