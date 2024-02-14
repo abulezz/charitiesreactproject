@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Button, Col, Grid, Row } from "antd";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { Button, Col, Grid, Input, Row } from "antd";
 import CharityCard from "../Components/CharityCard";
 import { APIResponse, Nonprofit } from "../@Types/Customtypes";
 import CharitiesGrid from "../Components/CharitiesGrid";
+import Search from "../Components/Search";
 
 function Charities() {
   const [charities, setCharities] = useState<Nonprofit[]>([
@@ -19,6 +20,7 @@ function Charities() {
     },
   ]);
   const [isLoading, setIsLoading] = useState(true);
+  const [inputText, setInputText] = useState("");
 
   const getCharities = async () => {
     setIsLoading(true);
@@ -41,6 +43,14 @@ function Charities() {
     }
   };
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputText(e.target.value);
+  };
+
+  const filteredCharities = charities?.filter((charity) => {
+    return charity.name.toLowerCase().includes(inputText.toLowerCase());
+  });
+
   useEffect(() => {
     getCharities();
   }, []);
@@ -49,8 +59,12 @@ function Charities() {
     <>
       <div className="wrapper">
         <h2>Charities</h2>
+        <Search handleInputChange={handleInputChange} />
+
         <div className="container">
-          <Row>{!isLoading && <CharitiesGrid charities={charities} />}</Row>
+          <Row>
+            {!isLoading && <CharitiesGrid charities={filteredCharities} />}
+          </Row>
         </div>
       </div>
     </>
