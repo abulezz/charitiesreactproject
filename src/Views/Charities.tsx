@@ -7,7 +7,6 @@ import Search from "../Components/Search";
 import { Pagination } from "antd";
 
 function Charities() {
-  console.log("%c component run", "color:green");
   const [charities, setCharities] = useState<Nonprofit[]>([
     {
       description: "",
@@ -31,7 +30,6 @@ function Charities() {
   const [isLoading, setIsLoading] = useState(true);
   const [inputText, setInputText] = useState("");
 
-  // console.log("import.meta.env.API_KEY", import.meta.env.VITE_API_KEY);
   const getCharities = async () => {
     setIsLoading(true);
     try {
@@ -39,7 +37,6 @@ function Charities() {
         `https://partners.every.org/v0.2/browse/water?apiKey=${
           import.meta.env.VITE_API_KEY
         }&page=${currentPage}`
-        // "https://partners.every.org/v0.2/browse/water?apiKey=pk_live_c02057a477bb2b1db7ab96376d48bd53&page=1&take="
       );
       if (response.ok) {
         const data = (await response.json()) as APIResponse;
