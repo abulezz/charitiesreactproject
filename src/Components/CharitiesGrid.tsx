@@ -14,8 +14,8 @@ const CharitiesGrid = ({ charities }: GridProps) => {
       {charities &&
         charities.map((charity, i) => {
           return (
-            <>
-              <div key={i}>
+            <React.Fragment key={i}>
+              <div>
                 <Col key={charity.ein} span={24}>
                   <CharityCard
                     cover={charity.coverImageUrl}
@@ -25,7 +25,7 @@ const CharitiesGrid = ({ charities }: GridProps) => {
                   />
                 </Col>
               </div>
-            </>
+            </React.Fragment>
           );
         })}
     </div>
