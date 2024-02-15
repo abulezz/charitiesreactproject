@@ -25,7 +25,7 @@ const CharitiesGrid = ({ charities }: GridProps) => {
                   />
                 </Col>
               </div>
-            </>
+            </React.Fragment>
           );
         })}
     </div>
