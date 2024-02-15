@@ -15,7 +15,7 @@ export declare type Nonprofit = {
   websiteUrl?: string;
 };
 
-export declare type Pagination = {
+export declare type PaginationType = {
   page: number;
   pages: number;
   page_size: number;

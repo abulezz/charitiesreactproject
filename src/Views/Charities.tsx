@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Button, Col, Grid, Input, Row } from "antd";
+import { Button, Col, Grid, Input, PaginationProps, Row } from "antd";
 import CharityCard from "../Components/CharityCard";
-import { APIResponse, Nonprofit } from "../@Types/Customtypes";
+import { APIResponse, Nonprofit, PaginationType } from "../@Types/Customtypes";
 import CharitiesGrid from "../Components/CharitiesGrid";
 import Search from "../Components/Search";
+import { Pagination } from "antd";
 
 function Charities() {
   const [charities, setCharities] = useState<Nonprofit[]>([
@@ -19,6 +20,13 @@ function Charities() {
       websiteUrl: "",
     },
   ]);
+  const [paginationValues, setPaginationValues] = useState<PaginationType>({
+    page: 1,
+    pages: 1,
+    page_size: 1,
+    total_results: 1,
+  });
+  const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [inputText, setInputText] = useState("");
 
@@ -33,8 +41,8 @@ function Charities() {
       );
       if (response.ok) {
         const data = (await response.json()) as APIResponse;
-        console.log("result :>>", data);
         setCharities(data.nonprofits);
+        setPaginationValues(data.pagination);
         setIsLoading(false);
       }
       //Handle errors here//
@@ -55,16 +63,29 @@ function Charities() {
     getCharities();
   }, []);
 
+  const onChange: PaginationProps["onChange"] = (page) => {
+    console.warn("page number clicked: ", page);
+    setCurrentPage(page);
+  };
+
   return (
     <>
       <div className="wrapper">
         <h2>Charities</h2>
-        <Search handleInputChange={handleInputChange} />
 
         <div className="container">
+          <Search handleInputChange={handleInputChange} />
+
           <Row>
             {!isLoading && <CharitiesGrid charities={filteredCharities} />}
           </Row>
+          <Pagination
+            current={paginationValues.page}
+            defaultCurrent={1}
+            total={paginationValues.total_results}
+            pageSize={paginationValues.page_size}
+            onChange={onChange}
+          />
         </div>
       </div>
     </>
