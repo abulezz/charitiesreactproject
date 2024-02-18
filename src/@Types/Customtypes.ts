@@ -8,10 +8,10 @@ export declare type Nonprofit = {
   ein: string;
   name: string;
   profileUrl: string;
-  logoUrl: string;
+  logoUrl?: string;
   coverImageUrl: string;
   logoCloudinaryId: string;
-  location: string;
+  location?: string;
   websiteUrl?: string;
 };
 

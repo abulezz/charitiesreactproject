@@ -10,25 +10,21 @@ type GridProps = {
 
 const CharitiesGrid = ({ charities }: GridProps) => {
   return (
-    <div key="1" className="card">
+    <>
       {charities &&
         charities.map((charity, i) => {
           return (
-            <React.Fragment key={i}>
-              <div>
-                <Col key={charity.ein} span={24}>
-                  <CharityCard
-                    cover={charity.coverImageUrl}
-                    avatar={charity.logoUrl}
-                    title={charity.name}
-                    descreption={charity.description}
-                  />
-                </Col>
-              </div>
-            </React.Fragment>
+            <Col key={charity.ein} span={24}>
+              <CharityCard
+                cover={charity.coverImageUrl}
+                avatar={charity.logoUrl}
+                title={charity.name}
+                descreption={charity.description}
+              />
+            </Col>
           );
         })}
-    </div>
+    </>
   );
 };
 
