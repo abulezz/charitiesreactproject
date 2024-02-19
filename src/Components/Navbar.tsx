@@ -5,6 +5,7 @@ import {
   HomeOutlined,
   LinkOutlined,
   MailOutlined,
+  ReadOutlined,
   SettingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
@@ -26,6 +27,11 @@ const items: MenuProps["items"] = [
     label: "Account",
     key: "account",
     icon: <UserOutlined />,
+  },
+  {
+    label: "About",
+    key: "about",
+    icon: <ReadOutlined />,
   },
   {
     label: (
