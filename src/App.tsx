@@ -1,45 +1,72 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import {
+  HeartOutlined,
+  HomeOutlined,
+  LinkOutlined,
+  ReadOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import type { MenuProps } from "antd";
+import { Menu } from "antd";
 import Charities from "./Views/Charities";
-import { Button, Row, Col } from "antd";
-import Navbar from "./Components/Navbar";
-import * as ReactDom from "react-dom";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import NotFound from "./Views/NotFound";
-import Home from "./Views/Home";
-import About from "./Views/About";
-import Favorites from "./Views/Favorites";
-import Account from "./Views/Account";
 
-const router = createBrowserRouter([
+const items: MenuProps["items"] = [
   {
-    path: "/home",
-    element: <Home />,
+    label: "Home",
+    key: "home",
+    icon: <HomeOutlined />,
   },
   {
-    path: "*",
-    element: <NotFound />,
+    label: "Favorites",
+    key: "favorites",
+    icon: <HeartOutlined />,
   },
   {
-    path: "/favorites",
-    element: <Favorites />,
+    label: "Account",
+    key: "account",
+    icon: <UserOutlined />,
   },
   {
-    path: "/account",
-    element: <Account />,
+    label: "About",
+    key: "about",
+    icon: <ReadOutlined />,
   },
   {
-    path: "/about",
-    element: <About />,
+    label: (
+      <a
+        href="https://www.every.org/water"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        every.org
+      </a>
+    ),
+    key: "tribute",
+    icon: <LinkOutlined />,
   },
-]);
+];
 
 function App() {
+  const [current, setCurrent] = useState("mail");
+
+  const onClick: MenuProps["onClick"] = (e) => {
+    console.log("click ", e);
+    setCurrent(e.key);
+  };
+
   return (
     <>
-      <RouterProvider router={router} />
+      <Menu
+        onClick={onClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        items={items}
+      />
+      <Charities />
+      {/* <RouterProvider router={router} /> */}
       {/* <Navbar />
-      <h1>H2All</h1> */}
-      {/* <Charities /> */}
+      <h1>H2All</h1>
+      <Charities /> */}
     </>
   );
 }
