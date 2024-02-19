@@ -12,9 +12,9 @@ const CharitiesGrid = ({ charities }: GridProps) => {
   return (
     <>
       {charities &&
-        charities.map((charity, i) => {
+        charities.map((charity) => {
           return (
-            <Col key={charity.ein} span={24}>
+            <Col key={charity.ein} md={6} sm={8} xs={16}>
               <CharityCard
                 cover={charity.coverImageUrl}
                 avatar={charity.logoUrl}
