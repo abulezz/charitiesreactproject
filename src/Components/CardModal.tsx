@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import React from "react";
-import Charities from "../Views/Charities";
+import Charities from "../Pages/Charities";
 
 type CardModalProps = {
   isModalOpen: boolean;

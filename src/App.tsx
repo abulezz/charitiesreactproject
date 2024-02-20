@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
-import Charities from "./Views/Charities";
+import Charities from "./Pages/Charities";
 
 const items: MenuProps["items"] = [
   {
