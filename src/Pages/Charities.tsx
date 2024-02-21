@@ -34,9 +34,7 @@ function Charities() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://partners.every.org/v0.2/browse/water?apiKey=${
-          import.meta.env.VITE_API_KEY
-        }&page=${currentPage}`
+        `https://partners.every.org/v0.2/browse/water?apiKey=pk_live_c02057a477bb2b1db7ab96376d48bd53&page=${currentPage}`
       );
       if (response.ok) {
         const data = (await response.json()) as APIResponse;
