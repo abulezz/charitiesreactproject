@@ -38,6 +38,7 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
         style={{ width: 300 }}
         cover={<img alt={title} src={cover} />}
         actions={[
+          /*<HeartOutlined key="favourite" onClick={isSignedIn? likePost(id): navigateToSignUpPage} />,*/
           <HeartOutlined key="favourite" />,
           <EllipsisOutlined key="ellipsis" onClick={showModal} />,
         ]}

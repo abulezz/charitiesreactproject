@@ -27,7 +27,7 @@ function CardModal({
         title={name}
         open={isModalOpen}
         onOk={handleOk}
-        onCancel={handleCancel}
+        footer={<div><Button onClick={handleOk}>OK</Button></div>}
       >
         <p>{logoUrl}</p>
         <p>{description}</p>
