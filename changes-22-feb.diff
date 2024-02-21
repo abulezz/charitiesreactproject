@@ -1,0 +1,112 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index 9d7aa20..646b4fc 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -7,12 +7,21 @@ import {
+   UserOutlined,
+ } from "@ant-design/icons";
+ import type { MenuProps } from "antd";
+-import { Menu } from "antd";
++import {Menu} from "antd";
++import {
++  Routes,
++  Route,
++  Link, BrowserRouter,
++} from "react-router-dom";
++
+ import Charities from "./Pages/Charities";
++import About from "./Pages/About";
++import Account from "./Pages/Account";
++import NotFound from "./Pages/NotFound";
+ 
+ const items: MenuProps["items"] = [
+   {
+-    label: "Home",
++    label: <Link to="/">Charities</Link>,
+     key: "home",
+     icon: <HomeOutlined />,
+   },
+@@ -22,12 +31,12 @@ const items: MenuProps["items"] = [
+     icon: <HeartOutlined />,
+   },
+   {
+-    label: "Account",
++    label: <Link to="account">Account</Link>,
+     key: "account",
+     icon: <UserOutlined />,
+   },
+   {
+-    label: "About",
++    label: <Link to="about">About </Link>,
+     key: "about",
+     icon: <ReadOutlined />,
+   },
+@@ -48,6 +57,7 @@ const items: MenuProps["items"] = [
+ 
+ function App() {
+   const [current, setCurrent] = useState("mail");
++  const [currentLiked, setCurrentLiked] = useState(0);
+ 
+   const onClick: MenuProps["onClick"] = (e) => {
+     console.log("click ", e);
+@@ -55,19 +65,22 @@ function App() {
+   };
+ 
+   return (
+-    <>
+-      <Menu
+-        onClick={onClick}
+-        selectedKeys={[current]}
+-        mode="horizontal"
+-        items={items}
+-      />
+-      <Charities />
+-      {/* <RouterProvider router={router} /> */}
+-      {/* <Navbar />
+-      <h1>H2All</h1>
+-      <Charities /> */}
+-    </>
++<>
++      <BrowserRouter>
++        <Menu
++            onClick={onClick}
++            selectedKeys={[current]}
++            mode="horizontal"
++            items={items}
++        />
++        <Routes >
++          <Route path="/" element={<Charities />}/>
++          <Route path="/about" element={<About/>} />
++          <Route path="/account" element={<Account/>} />
++          <Route path="*" element={<NotFound/>} />
++        </Routes>
++      </BrowserRouter>
++</>
+   );
+ }
+ 
+diff --git a/src/Components/CardModal.tsx b/src/Components/CardModal.tsx
+index 6e6c5df..3c3e8c0 100644
+--- a/src/Components/CardModal.tsx
++++ b/src/Components/CardModal.tsx
+@@ -27,7 +27,7 @@ function CardModal({
+         title={name}
+         open={isModalOpen}
+         onOk={handleOk}
+-        onCancel={handleCancel}
++        footer={<div><Button onClick={handleOk}>OK</Button></div>}
+       >
+         <p>{logoUrl}</p>
+         <p>{description}</p>
+diff --git a/src/Components/CharityCard.tsx b/src/Components/CharityCard.tsx
+index 916cb4d..1c62d59 100644
+--- a/src/Components/CharityCard.tsx
++++ b/src/Components/CharityCard.tsx
+@@ -38,6 +38,7 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
+         style={{ width: 300 }}
+         cover={<img alt={title} src={cover} />}
+         actions={[
++          /*<HeartOutlined key="favourite" onClick={isSignedIn? likePost(id): navigateToSignUpPage} />,*/
+           <HeartOutlined key="favourite" />,
+           <EllipsisOutlined key="ellipsis" onClick={showModal} />,
+         ]}
