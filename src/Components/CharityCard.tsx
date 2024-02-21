@@ -49,7 +49,6 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
           // description={descreption}
         />
         <CardModal
-          handleCancel={handleCancel}
           handleOk={handleOk}
           isModalOpen={isModalOpen}
           name={title}

@@ -7,17 +7,14 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import {Menu} from "antd";
-import {
-  Routes,
-  Route,
-  Link, BrowserRouter,
-} from "react-router-dom";
+import { Menu } from "antd";
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 
 import Charities from "./Pages/Charities";
 import About from "./Pages/About";
 import Account from "./Pages/Account";
 import NotFound from "./Pages/NotFound";
+import Favorites from "./Pages/Favorites";
 
 const items: MenuProps["items"] = [
   {
@@ -26,7 +23,7 @@ const items: MenuProps["items"] = [
     icon: <HomeOutlined />,
   },
   {
-    label: "Favorites",
+    label: <Link to="favorites">Favorites</Link>,
     key: "favorites",
     icon: <HeartOutlined />,
   },
@@ -65,22 +62,23 @@ function App() {
   };
 
   return (
-<>
+    <>
       <BrowserRouter>
         <Menu
-            onClick={onClick}
-            selectedKeys={[current]}
-            mode="horizontal"
-            items={items}
+          onClick={onClick}
+          selectedKeys={[current]}
+          mode="horizontal"
+          items={items}
         />
-        <Routes >
-          <Route path="/" element={<Charities />}/>
-          <Route path="/about" element={<About/>} />
-          <Route path="/account" element={<Account/>} />
-          <Route path="*" element={<NotFound/>} />
+        <Routes>
+          <Route path="/" element={<Charities />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-</>
+    </>
   );
 }
 
