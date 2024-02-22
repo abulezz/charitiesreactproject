@@ -1,9 +1,20 @@
-import React from "react";
+import { useContext } from "react";
+import { Button } from "antd";
+import { AuthContext } from "../Components/AuthContext";
 
-type Props = {};
+const Account = () => {
+  const { user, logout } = useContext(AuthContext);
+  const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // nothing happening here yet
+    logout();
+  };
+  return (
+    <>
+      <h1>My Account</h1>
 
-function Account({}: Props) {
-  return <h3>Account</h3>;
-}
+      <Button onClick={handleLogout}>logout</Button>
+    </>
+  );
+};
 
 export default Account;
