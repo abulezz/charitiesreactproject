@@ -15,6 +15,7 @@ import About from "./Pages/About";
 import Account from "./Pages/Account";
 import NotFound from "./Pages/NotFound";
 import Favorites from "./Pages/Favorites";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 const items: MenuProps["items"] = [
   {
@@ -72,7 +73,14 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Charities />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRoute>
+                <Favorites />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/about" element={<About />} />
           <Route path="/account" element={<Account />} />
           <Route path="*" element={<NotFound />} />
