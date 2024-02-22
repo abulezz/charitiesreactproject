@@ -6,6 +6,7 @@ import {
 import { Avatar, Card, Button, Modal } from "antd";
 import { useState } from "react";
 import CardModal from "./CardModal";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -48,6 +49,9 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
           title={title}
           // description={descreption}
         />
+        {/* <Link to={"charitydetails/123123123"}>
+          <h2>test</h2>
+        </Link> */}
         <CardModal
           handleOk={handleOk}
           isModalOpen={isModalOpen}
