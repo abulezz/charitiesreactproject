@@ -16,6 +16,8 @@ import Account from "./Pages/Account";
 import NotFound from "./Pages/NotFound";
 import Favorites from "./Pages/Favorites";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
 
 const items: MenuProps["items"] = [
   {
@@ -31,6 +33,16 @@ const items: MenuProps["items"] = [
   {
     label: <Link to="account">Account</Link>,
     key: "account",
+    icon: <UserOutlined />,
+  },
+  {
+    label: <Link to="signin">SignIn</Link>,
+    key: "signin",
+    icon: <UserOutlined />,
+  },
+  {
+    label: <Link to="signup">SignUp</Link>,
+    key: "signup",
     icon: <UserOutlined />,
   },
   {
@@ -55,7 +67,7 @@ const items: MenuProps["items"] = [
 
 function App() {
   const [current, setCurrent] = useState("mail");
-  const [currentLiked, setCurrentLiked] = useState(0);
+  // const [currentLiked, setCurrentLiked] = useState(0);
 
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
@@ -82,7 +94,16 @@ function App() {
             }
           />
           <Route path="/about" element={<About />} />
-          <Route path="/account" element={<Account />} />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
