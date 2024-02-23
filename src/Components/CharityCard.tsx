@@ -40,8 +40,9 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
         cover={<img alt={title} src={cover} />}
         actions={[
           /*<HeartOutlined key="favourite" onClick={isSignedIn? likePost(id): navigateToSignUpPage} />,*/
-          <HeartOutlined key="favourite" />,
-          <EllipsisOutlined key="ellipsis" onClick={showModal} />,
+          // <EllipsisOutlined key="ellipsis" onClick={`/charity/${ein}`} />,
+          <HeartOutlined key="favourite" onClick={showModal} />,
+          <EllipsisOutlined key="ellipsis" />,
         ]}
       >
         <Meta
@@ -55,8 +56,8 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
         <CardModal
           handleOk={handleOk}
           isModalOpen={isModalOpen}
-          name={title}
-          description={descreption}
+          name="Sign In"
+          description="Sign in or Sign up to view your favorites list"
         />
       </Card>
     </div>

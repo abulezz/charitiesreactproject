@@ -18,6 +18,7 @@ import Favorites from "./Pages/Favorites";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
+import CharityDetails from "./Pages/CharityDetails";
 
 const items: MenuProps["items"] = [
   {
@@ -105,6 +106,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/:charity/:ein" element={<CharityDetails />} />
         </Routes>
       </BrowserRouter>
     </>

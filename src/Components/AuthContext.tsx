@@ -108,8 +108,6 @@ export const AuthContextProvider = (props: Props) => {
         // An error happened.
         console.log("error :>> ", error);
       });
-    // logout logic here
-    // refactor when we are dealing with a real authentication provider
   };
 
   return (

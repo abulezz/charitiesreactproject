@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children }: Props) => {
       <Navigate to={"/"} replace={true} />
     )
   ) : (
-    <p>Sign Up or Sign in to view content</p>
+    <p>Checking Sign In Credentials...</p>
   );
 };
 export default ProtectedRoute;

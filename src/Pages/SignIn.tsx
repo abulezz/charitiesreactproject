@@ -34,10 +34,8 @@ const SignIn = () => {
       <h1>Sign In</h1>
       <br />
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
+        <div>
+          <label htmlFor="email">Email address</label>
           <input
             type="email"
             className="form-control"
@@ -48,10 +46,8 @@ const SignIn = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
+        <div>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             className="form-control"
@@ -62,9 +58,7 @@ const SignIn = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Sign In
-        </button>
+        <button type="submit">Sign In</button>
       </form>
       <br />
       <p>
