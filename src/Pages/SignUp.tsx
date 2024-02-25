@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../Components/AuthContext";
+import {AuthService} from "../Components/AuthService";
+import {AuthContextV2} from "../Components/AuthContxtV2";
 
 const SignUp = () => {
-  const { user, signup } = useContext(AuthContext);
+  const authService = new AuthService()
+  const user = useContext(AuthContextV2)
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -19,7 +21,7 @@ const SignUp = () => {
     const validPassword = validatePassword(password, repeatPassword);
     if (validPassword) {
       console.log("Attempting to sign up with: ", email, password);
-      signup(email, password);
+      authService.signup(email, password);
     } else {
       console.log("Passwords do not match");
     }

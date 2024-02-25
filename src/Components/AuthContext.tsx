@@ -81,6 +81,7 @@ export const AuthContextProvider = (props: Props) => {
       });
   };
 
+
   const getActiveUser = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {

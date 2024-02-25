@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { Button } from "antd";
 import { AuthContext } from "../Components/AuthContext";
+import {AuthService} from "../Components/AuthService";
 
 const Account = () => {
-  const { user, logout } = useContext(AuthContext);
+
+  const authenticationService = new AuthService()
   const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
     // nothing happening here yet
-    logout();
+      authenticationService.logout();
   };
   return (
     <>

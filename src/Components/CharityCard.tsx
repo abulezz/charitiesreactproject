@@ -4,9 +4,11 @@ import {
   HeartOutlined,
 } from "@ant-design/icons";
 import { Avatar, Card, Button, Modal } from "antd";
-import { useState } from "react";
+import {useContext, useState} from "react";
 import CardModal from "./CardModal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {AuthContextV2} from "./AuthContxtV2";
+import { collection, addDoc } from "firebase/firestore";
 
 const { Meta } = Card;
 
@@ -17,10 +19,13 @@ type CharityCardProps = {
   descreption: string;
   logoURL: string;
   location: string;
+  ein: string;
 };
 
-function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
+function CharityCard({ cover, avatar, title, ein }: CharityCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const user = useContext(AuthContextV2)
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -30,9 +35,26 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
     setIsModalOpen(false);
   };
 
+
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const addCharityToFavorite = async (ein:string) => {
+
+    // firestore -> add ein to favorites
+    const docRef = await addDoc(collection(db, "users"), {
+      first: "Ada",
+      last: "Lovelace",
+      born: 1815
+    });
+
+
+
+    // remove
+  };
+
   return (
     <div>
       <Card
@@ -41,8 +63,10 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
         actions={[
           /*<HeartOutlined key="favourite" onClick={isSignedIn? likePost(id): navigateToSignUpPage} />,*/
           // <EllipsisOutlined key="ellipsis" onClick={`/charity/${ein}`} />,
-          <HeartOutlined key="favourite" onClick={showModal} />,
-          <EllipsisOutlined key="ellipsis" />,
+          <HeartOutlined key="favourite" onClick={()=>{user?addCharityToFavorite(ein):showModal()}} />,
+          <EllipsisOutlined key="ellipsis"   onClick={()=>{
+            navigate("/charities/"+ein)
+          }} />,
         ]}
       >
         <Meta
@@ -50,9 +74,6 @@ function CharityCard({ cover, avatar, title, descreption }: CharityCardProps) {
           title={title}
           // description={descreption}
         />
-        {/* <Link to={"charitydetails/123123123"}>
-          <h2>test</h2>
-        </Link> */}
         <CardModal
           handleOk={handleOk}
           isModalOpen={isModalOpen}

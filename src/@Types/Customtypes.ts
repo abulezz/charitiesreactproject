@@ -1,6 +1,6 @@
 export declare interface APIResponse {
   nonprofits: Nonprofit[];
-  pagination: Pagination;
+  pagination: any;
 }
 
 export declare type Nonprofit = {
@@ -21,3 +21,45 @@ export declare type PaginationType = {
   page_size: number;
   total_results: number;
 };
+
+
+
+
+export declare interface CharityDetailsType {
+  id: string
+  name: string
+  isDisbursable: boolean
+  locationAddress: string
+  locationLatLng: LocationLatLng
+  ein: string
+  description: string
+  descriptionLong: string
+  primarySlug: string
+  logoCloudinaryId: string
+  coverImageCloudinaryId: string
+  nteeCode: string
+  nteeCodeMeaning: NteeCodeMeaning
+  hasAdmin: boolean
+  directDisbursement: boolean
+  websiteUrl: string
+  metadata: Metadata
+  logoUrl: string
+  coverImageUrl: string
+  profileUrl: string
+}
+
+export declare interface LocationLatLng {
+  type: string
+  coordinates: number[]
+}
+
+export declare interface NteeCodeMeaning {
+  majorCode: string
+  majorMeaning: string
+  decileCode: string
+  decileMeaning: string
+  centileCode: string
+  centileMeaning: string
+}
+
+export interface Metadata {}

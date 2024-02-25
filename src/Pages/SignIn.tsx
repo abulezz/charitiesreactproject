@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Components/AuthContext";
+import {AuthService} from "../Components/AuthService";
+import {AuthContextV2} from "../Components/AuthContxtV2";
 
 const SignIn = () => {
-  const { user, signin } = useContext(AuthContext);
+  const user = useContext(AuthContextV2);
   const navigate = useNavigate();
+
+  const authServive = new AuthService()
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +16,7 @@ const SignIn = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Attempting to sign in with: ", email, password);
-    signin(email, password);
+    authServive.signin(email,password)
   };
 
   useEffect(() => {
