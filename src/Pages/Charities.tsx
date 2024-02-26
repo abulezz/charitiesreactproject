@@ -41,6 +41,7 @@ function Charities() {
       if (response.ok) {
         const data = (await response.json()) as APIResponse;
         setCharities(data.nonprofits);
+        console.log("data.pagination->",data.pagination)
         setPaginationValues(data.pagination);
         setIsLoading(false);
       }
@@ -74,9 +75,9 @@ function Charities() {
         <h2>Charities</h2>
 
         <div className="container">
-          <Search handleInputChange={handleInputChange} />
+          <Search handleInputChange={handleInputChange}/>
 
-          <Row>
+          <Row style={{marginTop:"25px"}}>
             {!isLoading && <CharitiesGrid charities={filteredCharities} />}
           </Row>
           <Pagination
@@ -84,6 +85,7 @@ function Charities() {
             defaultCurrent={1}
             total={paginationValues.total_results}
             pageSize={paginationValues.page_size}
+            showSizeChanger={false}
             onChange={onChange}
           />
         </div>
