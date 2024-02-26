@@ -1,18 +1,16 @@
 import { useContext } from "react";
 import { Button } from "antd";
 import { AuthContext } from "../Components/AuthContext";
-import {AuthService} from "../Components/AuthService";
+import { AuthService } from "../Components/AuthService";
 
 const Account = () => {
-
-  const authenticationService = new AuthService()
+  const authenticationService = new AuthService();
   const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // nothing happening here yet
-      authenticationService.logout();
+    authenticationService.logout();
   };
   return (
     <>
-      <h1>My Account</h1>
+      <h3>My Account</h3>
 
       <Button onClick={handleLogout}>logout</Button>
     </>
