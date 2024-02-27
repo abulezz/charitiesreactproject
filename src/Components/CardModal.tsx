@@ -5,11 +5,11 @@ import Charities from "../Pages/Charities";
 type CardModalProps = {
   isModalOpen: boolean;
   handleOk: () => void;
-  handleCancel: () => void;
+  // handleCancel: () => void;
   description: string;
   name: string;
-  location: string;
-  logoUrl: string;
+  // location: string;
+  // logoUrl: string;
 };
 
 function CardModal({
@@ -27,7 +27,11 @@ function CardModal({
         title={name}
         open={isModalOpen}
         onOk={handleOk}
-        footer={<div><Button onClick={handleOk}>OK</Button></div>}
+        footer={
+          <div>
+            <Button onClick={handleOk}>OK</Button>
+          </div>
+        }
       >
         <p>{logoUrl}</p>
         <p>{description}</p>

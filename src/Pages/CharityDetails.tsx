@@ -25,6 +25,8 @@ function CharityDetails({}: Props) {
     return data.data;
   };
 
+  console.warn("charity details");
+
   useEffect(() => {
     fetchCharityDetails().then((charity) => {
       console.log("charity.nonprofit->", charity.nonprofit);
@@ -39,11 +41,14 @@ function CharityDetails({}: Props) {
           <h3>
             {charity.nonprofit.name} - {charity.nonprofit.locationAddress}
           </h3>
-          <p>{charity.nonprofit.description}</p>
-          <img
-            alt={charity.nonprofit.name}
-            src={charity.nonprofit.coverImageUrl}
-          />
+          <p>{charity.nonprofit.descriptionLong}</p>
+          <Button
+            type="link"
+            href={charity.nonprofit.profileUrl}
+            target="_blank"
+          >
+            Visit our verified profile on every.org to donate from here
+          </Button>
         </div>
       </>
     )

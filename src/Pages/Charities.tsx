@@ -1,10 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Button, Col, Grid, Input, PaginationProps, Row } from "antd";
-import CharityCard from "../Components/CharityCard";
+import { Carousel, PaginationProps, Row } from "antd";
 import { APIResponse, Nonprofit, PaginationType } from "../@Types/Customtypes";
 import CharitiesGrid from "../Components/CharitiesGrid";
 import Search from "../Components/Search";
 import { Pagination } from "antd";
+import image1 from "../../src/assets/Images/image1.jpg";
+import image2 from "../../src/assets/Images/image2.jpg";
+import image4 from "../../src/assets/Images/image4.jpg";
+import image5 from "../../src/assets/Images/image5.jpg";
 
 function Charities() {
   const [charities, setCharities] = useState<Nonprofit[]>([
@@ -41,7 +44,7 @@ function Charities() {
       if (response.ok) {
         const data = (await response.json()) as APIResponse;
         setCharities(data.nonprofits);
-        console.log("data.pagination->",data.pagination)
+        console.log("data.pagination->", data.pagination);
         setPaginationValues(data.pagination);
         setIsLoading(false);
       }
@@ -69,15 +72,59 @@ function Charities() {
     setCurrentPage(page);
   };
 
+  const contentStyle = {
+    height: "160px",
+    color: "#fff",
+    lineHeight: "160px",
+    textAlign: "center",
+    background: "#364d79",
+  };
+
   return (
     <>
+      <Carousel />
       <div className="wrapper">
-        <h2>Charities</h2>
+        <div>
+          <Carousel autoplay>
+            <div style={contentStyle}>
+              <img
+                height="160px"
+                width="480px"
+                src={image1}
+                alt="H2All Water Charity"
+              ></img>
+            </div>
+            <div>
+              <img
+                height="160px"
+                width="480px"
+                src={image2}
+                alt="Water Cause Donations"
+              ></img>
+            </div>
+            <div>
+              <img
+                height="160px"
+                width="480px"
+                src={image4}
+                alt="World Water Day"
+              ></img>
+            </div>
+            <div>
+              <img
+                height="160px"
+                width="480px"
+                src={image5}
+                alt="Verified Water Cause Intiative"
+              ></img>
+            </div>
+          </Carousel>
+        </div>
 
-        <div className="container">
-          <Search handleInputChange={handleInputChange}/>
+        <div style={{ marginTop: "25px" }} className="container">
+          <Search handleInputChange={handleInputChange} />
 
-          <Row style={{marginTop:"25px"}}>
+          <Row style={{ marginTop: "25px" }}>
             {!isLoading && <CharitiesGrid charities={filteredCharities} />}
           </Row>
           <Pagination
